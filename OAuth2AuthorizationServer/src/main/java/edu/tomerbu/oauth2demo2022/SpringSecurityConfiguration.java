@@ -16,8 +16,15 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SpringSecurityConfiguration {
 
+    private final CORSCustomizer corsCustomizer;
+
+    public SpringSecurityConfiguration(CORSCustomizer corsCustomizer) {
+        this.corsCustomizer = corsCustomizer;
+    }
+
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+        corsCustomizer.corsCustomizer(http);
         http.authorizeRequests(authorizeRequests ->
                         authorizeRequests.anyRequest().authenticated()
                 )

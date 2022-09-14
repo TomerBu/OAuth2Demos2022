@@ -35,6 +35,11 @@ import java.util.UUID;
 //@Import(OAuth2AuthorizationServerConfiguration.class)
 
 public class AuthorizationServerConfiguration {
+    private final CORSCustomizer corsCustomizer;
+
+    public AuthorizationServerConfiguration(CORSCustomizer corsCustomizer) {
+        this.corsCustomizer = corsCustomizer;
+    }
 
     @Bean
     RegisteredClientRepository registeredClientRepository() {
@@ -84,7 +89,7 @@ public class AuthorizationServerConfiguration {
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http) throws Exception {
         OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
-
+        corsCustomizer.corsCustomizer(http);
         return http.formLogin(Customizer.withDefaults()).build();
     }
 
