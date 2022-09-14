@@ -14,7 +14,7 @@ public class Main {
             var verifier = generateCodeVerifier();
             var challenge = generateCodeChallenge(verifier);
             System.out.println("Code Verifier:" + verifier);
-            System.out.println("Code Challenge" + challenge);
+            System.out.println("Code Challenge:" + challenge);
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
