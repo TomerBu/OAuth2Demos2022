@@ -1,0 +1,23 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <title>Insert title here</title>
+</head>
+<body>
+<h1>Orders page</h1>
+
+<div th:if="${people.isEmpty()}">
+    <div>No People found</div>
+</div>
+
+<div th:each="person : ${people}">
+    <p>
+        <span th:text="${person.firstname()}"></span>
+        <span th:text="${person.lastname()}"></span>
+    </p>
+</div>
+
+</body>
+</html>
